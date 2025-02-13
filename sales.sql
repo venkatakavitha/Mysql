@@ -52,4 +52,13 @@ GROUP BY p.product_id
 ORDER BY AmountSold DESC
 LIMIT 5;
 
+SELECT p.product_id, p.name AS product_name, SUM(s.quantity_sold) AS total_quantity_sold
+FROM Sales s
+JOIN Products p ON s.product_id = p.product_id
+GROUP BY p.product_id
+HAVING SUM(s.quantity_sold) > 100  
+ORDER BY total_quantity_sold DESC;
+
+
+
 
