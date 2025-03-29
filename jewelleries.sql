@@ -4,10 +4,10 @@ use `jewelleries`;
 
 CREATE TABLE products (
     productid INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
+    name VARCHAR(255) ,
     description TEXT,
-    price DECIMAL(10, 2) NOT NULL,
-    imageurl VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) ,
+    imageurl VARCHAR(255) ,
     category VARCHAR(100)
 );
 
@@ -20,9 +20,9 @@ VALUES
     (4,'Leather Wallet', 'Genuine leather wallet with multiple card slots', 35.50, 'https://example.com/images/wallet.jpg', 'Fashion'),
     (5,'Smartphone Stand', 'Adjustable smartphone stand for desk use', 15.75, 'https://example.com/images/stand.jpg', 'Accessories');
     
-    CREATE TABLE categories (
+    CREATE TABLE categories	 (
     categoryid INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL
+    name VARCHAR(100)
 );
 select * from categories;
 INSERT INTO categories (categoryid,name)
@@ -35,8 +35,8 @@ VALUES
     
  CREATE TABLE customers (
     customersid INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
+    name VARCHAR(255) ,
+    email VARCHAR(255) ,
     phone VARCHAR(20),
     address TEXT,
     createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -54,8 +54,8 @@ VALUES
     
 CREATE TABLE orders (
     orderid INT PRIMARY KEY AUTO_INCREMENT,
-    customersid INT NOT NULL,
-    totalprice DECIMAL(10, 2) NOT NULL,
+    customersid INT,
+    totalprice DECIMAL(10, 2) ,
     orderdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     status VARCHAR(50) DEFAULT 'Pending'
 );
@@ -70,8 +70,8 @@ VALUES
 
 CREATE TABLE blogposts (
     postid INT PRIMARY KEY AUTO_INCREMENT,
-    title VARCHAR(255) NOT NULL,
-    content TEXT NOT NULL,
+    title VARCHAR(255) ,
+    content TEXT ,
     author VARCHAR(255),
     postdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -102,8 +102,8 @@ VALUES
 
 CREATE TABLE sociallinks (
     linkid INT PRIMARY KEY AUTO_INCREMENT,
-    platform VARCHAR(100) NOT NULL,
-    url VARCHAR(255) NOT NULL
+    platform VARCHAR(100) ,
+    url VARCHAR(255) 
 );
 select * from sociallinks;
 INSERT INTO sociallinks (platform, url)
@@ -132,7 +132,7 @@ VALUES
 
 CREATE TABLE newslettersubscribers (
     subscriberid INT PRIMARY KEY AUTO_INCREMENT,
-    email VARCHAR(255) UNIQUE NOT NULL,
+    email VARCHAR(255), 
     subscribedat TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 select * from newslettersubscribers;
@@ -149,7 +149,7 @@ CREATE TABLE orderitems (
     orderid INT,
     productid INT,
     quantity INT DEFAULT 1,
-    price DECIMAL(10, 2) NOT NULL,
+    price DECIMAL(10, 2) ,
     FOREIGN KEY (orderid) REFERENCES orders(orderid),
     FOREIGN KEY (productid) REFERENCES products(productid)
 );
@@ -159,5 +159,19 @@ VALUES
 (1, 2, 3, 200), 
 (2, 3, 1, 40);
 
+CREATE TABLE login (
+    id INT,
+    username VARCHAR(50),
+    password VARCHAR(50),
+    usertype VARCHAR(50),
+    loginstatus VARCHAR(50)
+);
+select * from login;
+INSERT INTO login(id, username, password, usertype, loginstatus)
+VALUES
+(1, 'kavitha', 'kavi09', 'user', 'success'),
+(2, 'lahari', 'lahari17', 'user', 'success'),
+(3, 'sirisha', 'siri23', 'admin', 'failed'),
+(4, 'samreen', 'sam08', 'admin', 'failed');
 
 
